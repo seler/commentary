@@ -77,7 +77,6 @@ class CreateComm(CreateView):
     def form_valid(self, form):
         subject = 'Sprzedający rozpoczął nową transakcję do oceny'
         dupa = subject
-        
         send_mail(subject, dupa, 'from@example.com', [form.instance.user_b.email], fail_silently=False)
         self.object = form.save()
         self.object.user_a = self.request.user
