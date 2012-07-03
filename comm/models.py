@@ -69,7 +69,6 @@ class Comm(models.Model):
     user_b = models.ForeignKey('auth.User',
         related_name="comm_user_b",
         null=True,
-        blank=True,
         verbose_name=u"użytkownik kupujący")
     point_a = models.NullBooleanField(
         choices=POINT_CHOICES,

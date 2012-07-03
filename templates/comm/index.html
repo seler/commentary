@@ -1,0 +1,30 @@
+<h3>menu</h3>
+<ul>
+<li><a href="{% url create_comm %}">utworz wpis</a></li>
+</ul>
+{% if a_todo or b_todo %}
+<h3>do wystawienia</h3>
+<ul>
+{% for comm in a_todo %}
+<li><a href="{% url aupdate_comm comm.pk %}">comm.user_b</a></li>
+{% endfor %}
+{% for comm in b_todo %}
+<li><a href="{% url bupdate_comm comm.pk %}">comm.user_a</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+<h3>ranking</h3>
+{% for u in users %}
+{{ u.username }}, 
+    pozytywnych jako sprzedawca: {{ u.a_positive_points }}, 
+	negatywnych jako sprzedawca: {{ u.a_negative_points }}, 
+	pozytywnych jako kupujacy: {{ u.b_positive_points }}, 
+	negatywnych jako kupujacy: {{ u.b_negative_points }},
+	suma jako sprzedawca: {{ u.a_points }}, 
+	suma jako kupujacy: {{ u.b_points }},  
+	suma: {{ u.points }},
+	ilosc transakcji jako sprzedajacy: {{ u.a_count }}
+	ilosc transakcji jako kupujacy: {{ u.b_count }}
+	ilosc transakcji: {{ u.count }}
+	skalowana ocena: {{ u.rating }} <br>
+{% endfor %}
