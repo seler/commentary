@@ -32,7 +32,9 @@ class MyUser(User):
     def count(self):
         return self.a_count() + self.b_count()
     def rating(self):
-        return self.points() / float(self.count()) * 100
+        if self.count():
+            return self.points() / float(self.count()) * 100
+        return 0
     
     class Meta:
         proxy = True
@@ -73,7 +75,9 @@ class CreateComm(CreateView):
         return CreateCommForm
 
     def form_valid(self, form):
-        send_mail('Sprzedajacy cos fajnego zrobil', 'Here is the message.', 'from@example.com', [form.instance.user_b.email], fail_silently=False)
+        subject = 'Sprzedający rozpoczął nową transakcję do oceny'
+        dupa = subject
+        send_mail(subject, dupa, 'from@example.com', [form.instance.user_b.email], fail_silently=False)
         self.object = form.save()
         self.object.user_a = self.request.user
         return super(CreateComm, self).form_valid(form)
