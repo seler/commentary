@@ -37,6 +37,7 @@ class MyUser(User):
     class Meta:
         proxy = True
 
+@login_required
 def home(request):
     user = request.user
 
