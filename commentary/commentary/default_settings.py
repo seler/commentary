@@ -16,11 +16,11 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'commentary',
-        'USER': 'wwwedit',                      # Not used with sqlite3.
-        'PASSWORD': 'wwwedit',                  # Not used with sqlite3.
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'commentary.db3',
+        'USER': '',                      # Not used with sqlite3.
+        'PASSWORD': '',                  # Not used with sqlite3.
+        'HOST': '',
         'PORT': '',
     }
 }
