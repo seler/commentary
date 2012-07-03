@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import random
 import hashlib
 
@@ -57,9 +57,45 @@ def make_random_string(length=8, universe='', small_letters=True, big_letters=Tr
 
 
 class Comm(models.Model):
-    user_a = models.ForeignKey('auth.User', related_name="comm_user_a")
-    user_b = models.ForeignKey('auth.User', related_name="comm_user_b", null=True, blank=True)
-    point_a = models.NullBooleanField(null=True)
-    point_b = models.NullBooleanField(null=False)
-    description = models.TextField()
+    POINT_CHOICES = (
+        (True, "+1"),
+        (False, "-1"),
+    )
+    user_a = models.ForeignKey('auth.User',
+        related_name="comm_user_a",
+        verbose_name=u"użytkownik sprzedający",
+        null=True,
+        blank=True)
+    user_b = models.ForeignKey('auth.User',
+        related_name="comm_user_b",
+        null=True,
+        blank=True,
+        verbose_name=u"użytkownik kupujący")
+    point_a = models.NullBooleanField(
+        choices=POINT_CHOICES,
+        null=True,
+        verbose_name=u"ocena wystawiona przez sprzedającego")
+    point_b = models.NullBooleanField(
+        choices=POINT_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name=u"ocena wystawiona przez kupującego")
+    description = models.TextField(
+        null=True,
+        verbose_name="opis sprzedawanego przedmiotu")
+    description_a = models.TextField(
+        null=True,
+        verbose_name="ocena wystawione przez sprzedającego")
+    description_b = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="ocena wystawiona przez kupującego")
     add_date = models.DateTimeField(auto_now_add=True)
+    mod_date = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = u"komentarz"
+        verbose_name_plural = u"komentarze"
+
+    def __unicode__(self):
+        return "komentarz %d" % self.pk
