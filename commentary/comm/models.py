@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import random
 import hashlib
 
@@ -56,21 +57,9 @@ def make_random_string(length=8, universe='', small_letters=True, big_letters=Tr
 
 
 class Comm(models.Model):
-    person_a = models.ForeignKey('Person')
-    person_b = models.ForeignKey('Person', null=True, blank=True)
+    user_a = models.ForeignKey('auth.User', related_name="comm_user_a")
+    user_b = models.ForeignKey('auth.User', related_name="comm_user_b", null=True, blank=True)
     point_a = models.NullBooleanField(null=True)
     point_b = models.NullBooleanField(null=False)
-    hash = models.CharField(max_length=128)
     description = models.TextField()
     add_date = models.DateTimeField(auto_now_add=True)
-    mod_date = models.DateTimeField(auto_now=True)
-
-    def make_password(self):
-        return make_random_string()
-
-    def make_hash(self, password):
-        return hashlib.sha512(password + settings.SALT).hexdigest()
-
-
-class Person(models.Model):
-    nick = models.CharField(max_length=128)
