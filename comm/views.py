@@ -59,7 +59,7 @@ def home(request):
 
 class CreateComm(CreateView):
     model = Comm
-    success_url = '/'
+    success_url = '/' 
 
     def get_form_class(self):
         form_class = modelform_factory(

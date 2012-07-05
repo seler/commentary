@@ -63,32 +63,32 @@ class Comm(models.Model):
     )
     user_a = models.ForeignKey('auth.User',
         related_name="comm_user_a",
-        verbose_name=u"użytkownik sprzedający",
+        verbose_name=u"Sprzedający",
         null=True,
         blank=True)
     user_b = models.ForeignKey('auth.User',
         related_name="comm_user_b",
         null=True,
-        verbose_name=u"użytkownik kupujący")
+        verbose_name=u"Kupujący")
     point_a = models.NullBooleanField(
         choices=POINT_CHOICES,
         null=True,
-        verbose_name=u"ocena wystawiona przez sprzedającego")
+        verbose_name=u"Ocena kupującego")
     point_b = models.NullBooleanField(
         choices=POINT_CHOICES,
         blank=True,
         null=True,
-        verbose_name=u"ocena wystawiona przez kupującego")
+        verbose_name=u"Ocena sprzedawanego")
     description = models.TextField(
         null=True,
-        verbose_name="opis sprzedawanego przedmiotu")
+        verbose_name="Opis przedmiotu")
     description_a = models.TextField(
         null=True,
-        verbose_name="ocena wystawione przez sprzedającego")
+        verbose_name="Oceń kupującego")
     description_b = models.TextField(
         blank=True,
         null=True,
-        verbose_name="ocena wystawiona przez kupującego")
+        verbose_name="oceń sprzedającego")
     add_date = models.DateTimeField(auto_now_add=True)
     mod_date = models.DateTimeField(auto_now=True)
 

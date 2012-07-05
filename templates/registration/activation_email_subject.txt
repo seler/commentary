@@ -1,1 +1,1 @@
-Account registration for {{ site.name }}
+Wiadomoœæ aktywacyjna z systemu komentarzy sprzeda¿y forum {{ site.name }}

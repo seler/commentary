@@ -1,10 +1,12 @@
 {% extends "registration/registration_base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Strona główna - {% endblock %}
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>Wpisałeś niepoprawne dane do logowania. Sprubuj ponownie</p>
 {% endif %}
+
+<p>Nie masz jeszcze danych do logowania - <a href="{% url registration_register %}">Zarejestruj nowe konto</a></p>
 
 <form method="post" action="{% url django.contrib.auth.views.login %}">{% csrf_token %}
 <table>
@@ -17,10 +19,11 @@
     <td>{{ form.password }}</td>
 </tr>
 </table>
-<p><a href="{% url auth_password_reset %}">Forgot</a> your password?  <a href="{% url registration_register %}">Need an account</a>?</p>
 
-<input type="submit" value="login" />
+<input type="submit" value="Zaloguj" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+<!--<p><a href="{% url auth_password_reset %}">Zapomniałeś hasła?</a></p> -->
 
 {% endblock %}

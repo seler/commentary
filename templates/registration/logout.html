@@ -1,5 +1,6 @@
 {% extends "registration/registration_base.html" %}
 {% block title %}Logged out{% endblock %}
 {% block content %}
-Successfully logged out!
+<p>Zostałeś poprawnie wylogowany!<br>
+<a href='{% url auth_login %}'>login</a></p>
 {% endblock %}
