@@ -6,7 +6,6 @@
 <h3>menu</h3>
 <ul>
 <li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
-<li><a href="{% url auth_logout %}">Wyloguj</a></li>
 </ul>
 {% if a_todo or b_todo %}
 <h3>Twoje otwarte transakcje: </h3>
@@ -21,7 +20,7 @@
 {% endif %}
 <h3>ranking</h3>
 {% for u in users %}
-<p><strong>Użytkownik {{ u.username }},</strong><br>
+	<p><strong>Użytkownik {{ u.username }},</strong><br>
     pozytywnych jako sprzedawca: {{ u.a_positive_points }},<br> 
 	negatywnych jako sprzedawca: {{ u.a_negative_points }}, <br>
 	pozytywnych jako kupujacy: {{ u.b_positive_points }}, <br>
@@ -36,4 +35,7 @@
 	skalowana ocena: {{ u.rating }} <br> -->
 </p>
 {% endfor %}
+<ul>
+<li><a href="{% url auth_logout %}">Wyloguj</a></li>
+</ul>
 {% endblock %}
