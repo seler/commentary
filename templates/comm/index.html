@@ -2,7 +2,7 @@
 {% block title %}Strona główna - {% endblock %}
 {% block content %}
 
-<p>Witaj - {{comm.user_b}} </p>
+<p>Witaj {{ user }} </p>
 <h3>menu</h3>
 <ul>
 <li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>

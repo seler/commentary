@@ -1,4 +1,4 @@
-Właśnie dokonałeś rejestracji w systemie komentarzy sprzedaży forum  {{ site.name }}.
+Właśnie dokonałes rejestracji w systemie komentarzy sprzedaży forum  {{ site.name }}.
 Jeżeli to nie byłeś Ty, proszę zignoruj tą wiadomość.
 
 Aby aktywować konto kliknij w link w ciągu kolejnych {{ expiration_days }} dni:

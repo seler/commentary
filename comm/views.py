@@ -64,6 +64,7 @@ def home(request):
     return render_to_response(
         'comm/index.html',
         {
+            'user': user,
             "users": users,
             'a_todo': a_todo,
             'b_todo': b_todo,
