@@ -134,6 +134,9 @@ INSTALLED_APPS = (
     'registration',
 )
 
+from django.core.urlresolvers import reverse_lazy
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+
 ACCOUNT_ACTIVATION_DAYS = 7
 
 SALT = '12;3kjbn123@!#G%BM!@#N!111%U !#{$U%*9<T-F3>q³90³´õ¹°000000000000000000@}Â'
