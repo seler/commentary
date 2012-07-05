@@ -1,9 +1,10 @@
-Ww¿a¿nie dokona¿e¿ rejestracji w systemie komentarzy sprzeda¿y forum  {{ site.name }}.
-Je¿eli to nie by¿e¿ Ty, prosz¿ zignoruj t¿ wiadomo¿¿.
+WÅ‚aÅ›nie dokonaÅ‚eÅ› rejestracji w systemie komentarzy sprzedaÅ¼y forum  {{ site.name }}.
+JeÅ¼eli to nie byÅ‚eÅ› Ty, proszÄ™ zignoruj tÄ… wiadomoÅ›Ä‡.
 
-Aby aktywowa¿ konto kliknij w link w ci¿gu kolejnych {{ expiration_days }} dni:
+Aby aktywowaÄ‡ konto kliknij w link w ciÄ…gu kolejnych {{ expiration_days }} dni:
 
 http://{{site.domain}}/accounts/activate/{{ activation_key }}
 
 Pozdrawiamy
 {{ site.name }}
+
