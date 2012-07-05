@@ -2,7 +2,7 @@
 {% block title %}Strona główna - {% endblock %}
 {% block content %}
 
-<p>Witaj - {{comm.user_b}} </p>
+<p>Witaj - {{ user }}</p>
 <h3>menu</h3>
 <ul>
 <li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
@@ -12,7 +12,7 @@
 <h3>Twoje otwarte transakcje: </h3>
 <ul>
 {% for comm in a_todo %}
-<li><a href="{% url aupdate_comm comm.pk %}">Wystaw opinię dla {{comm.user_b}}</a></li>
+<li>Wystaw opinię dla <strong>{{comm.user_b}}</strong> za kupiony przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></li>
 {% endfor %}
 {% for comm in b_todo %}
 <li>Wystaw opinię dla <strong>{{comm.user_a}}</strong> za sprzedawany przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></li>
