@@ -1,1 +1,1 @@
-Wiadomoœæ aktywacyjna z systemu komentarzy sprzeda¿y forum {{ site.name }}
+WiadomoÅ›Ä‡ aktywacyjna z systemu komentarzy sprzedaÂ¿y forum {{ site.name }}
