@@ -3,11 +3,13 @@
 {% block content %}
 
 
-<p><strong>Witaj - {{ user }}</strong></p>
+<p><span style="color: white; font-size: 15pt;">Witaj - jesteś zalogowany jako</span><span style="color: red; font-size: 15pt;"> {{ user }}</span></p>
 <div class="menu">
-<ul>
-<li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
-</ul>
+	<ul>
+		<li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
+		<li><a href="http://pdmrc.pl/index.php?act=idx" target="blank">Forum</a></li>
+		<li><a href="{% url auth_logout %}">Wyloguj</a></li>
+	</ul>
 </div >
 {% if a_todo or b_todo %}
 <div class="t1">
@@ -40,10 +42,4 @@
 	skalowana ocena: {{ u.rating }} <br> -->
 </p>
 {% endfor %}</div>
-<div class="menu">
-	<ul>
-	<li><a href="{% url auth_logout %}">Wyloguj</a></li>
-	</ul>
-</div>
-
 {% endblock %}

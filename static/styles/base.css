@@ -20,7 +20,8 @@ a:hover{
 
 #CONTENT{
 
-	width:760px;
+	width:550px;
+	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -28,6 +29,11 @@ a:hover{
 p {
 	fint-size: 50pt;
 	margin-left: 10px;
+	text-align: center;
+}
+
+h1{
+	text-align: center;
 }
 
 h2{ 
@@ -69,7 +75,25 @@ strong {
 	color: orange;
 }
 
+form{
+	table-layout: auto;
+	text-align: center;
+
+}
+
+table{
+	text-align: center;
+}
+
+td{
+}
+
+tr{
+}
+
+
 .t1{
+	text-align: center;
 	margin: 20px;
 	padding: 0px;
 }
