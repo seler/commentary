@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
 # Django settings for commentary project.
 
-import sys
-
-PROJECT_PATH = '/home/rselewonko/dev/projects/morpheuz/commentary/commentary'
-sys.path.append(PROJECT_PATH)
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -81,6 +76,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    'static',
 )
 
 # List of finder classes that know how to find static files in
