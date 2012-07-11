@@ -2,3 +2,6 @@ syntax: glob
 *.pyc
 *~
 commentary/settings.py
+site-packages/*
+tmp/*
+public/*
