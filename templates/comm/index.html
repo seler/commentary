@@ -2,23 +2,28 @@
 {% block title %}Strona główna - {% endblock %}
 {% block content %}
 
-<p>Witaj - {{ user }}</p>
-<h3>menu</h3>
+
+<p><strong>Witaj - {{ user }}</strong></p>
+<div class="menu">
 <ul>
 <li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
 </ul>
+</div >
 {% if a_todo or b_todo %}
+<div class="t1">
 <h3>Twoje otwarte transakcje: </h3>
 <ul>
 {% for comm in a_todo %}
-<li>Wystaw opinię dla <strong>{{comm.user_b}}</strong> za kupiony przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></li>
+<li>Wystaw opinię dla <span style="color: pink; font-size: 15pt;">{{comm.user_b}}</span> za kupiony przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></li>
 {% endfor %}
 {% for comm in b_todo %}
-<li>Wystaw opinię dla <strong>{{comm.user_a}}</strong> za sprzedawany przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></li>
-{% endfor %}
+<ul>
+<li>Wystaw opinię dla <span style="color: pink; font-size: 15pt;">{{comm.user_a}}</span> za sprzedawany przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong><br></a></li>
 </ul>
-{% endif %}
-<h3>ranking</h3>
+{% endfor %}
+{% endif %}</div>
+<div class="t1">
+<h3>Ranking</h3>
 {% for u in users %}
 	<p><strong>Użytkownik {{ u.username }},</strong><br>
     pozytywnych jako sprzedawca: {{ u.a_positive_points }},<br> 
@@ -34,8 +39,11 @@
 	ilosc transakcji: {{ u.count }}<br>
 	skalowana ocena: {{ u.rating }} <br> -->
 </p>
-{% endfor %}
-<ul>
-<li><a href="{% url auth_logout %}">Wyloguj</a></li>
-</ul>
+{% endfor %}</div>
+<div class="menu">
+	<ul>
+	<li><a href="{% url auth_logout %}">Wyloguj</a></li>
+	</ul>
+</div>
+
 {% endblock %}
