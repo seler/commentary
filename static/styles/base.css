@@ -7,6 +7,12 @@ body {
 	padding: 0;
 }
 
+#CONTENT{ 
+width:750px; 
+margin-left:auto; 
+margin-right:auto;
+}
+
 a{ 
 	color: #3399FF; 
 	text-decoration: none; 
@@ -18,13 +24,6 @@ a:hover{
 	cursor: hand;
 }
 
-#CONTENT{
-
-	width:550px;
-	text-align: center;
-	margin-right: auto;
-	margin-left: auto;
-}
 
 p {
 	fint-size: 50pt;
@@ -32,8 +31,14 @@ p {
 	text-align: center;
 }
 
-h1{
+.h1{
+	width:600px;
 	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	margin: 20px;
+	padding: 0px;
+
 }
 
 h2{ 
@@ -96,17 +101,51 @@ tr{
 	text-align: center;
 	margin: 20px;
 	padding: 0px;
+	width: 700px;
+}
+
+.t2{
+	width: 700px;
+	text-align: left;
+	margin-left: 60px;
+	padding: 20px;
+	
+}
+
+.ranking{
+	width:700px;
+	text-align: center;
+	margin: 20px;
+	padding: 0px;
+	display: block;
+	background:#4D4D4D;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+	font-size: 15pt;
+	font-weight:bold;
+}
+
+.ranking_01{
+	width:700px;
+	text-align: center;
+	margin: 20px;
+	padding: 0px;
+	display: block;
+	background:#5D5D5D;
+	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+	font-size: 10pt;
 }
 
 .menu{
+	width:700px;
 	border:none;
 	border:0px;
-	margin:0px;
+	margin:20px;
 	padding:0px;
 	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
 	font-size: 10pt;
 	font-weight:bold;
 	}
+
 .menu ul{
 	background:#4D4D4D;
 	background-repeat: no-repeat;
@@ -117,10 +156,12 @@ tr{
 	margin:0;
 	padding: 0 0px 2px 0px;
 	}
+
 	.menu li{
 		float:left;
 		padding:0px;
 		}
+
 	.menu li a{
 		background:#4D4D4D bottom right no-repeat;
 		color:#33cc33;
@@ -133,12 +174,14 @@ tr{
 		text-decoration:none;
 		border-left: 1px solid Black;
 		}
+
 		.menu li a:hover, .menu ul li:hover a{
 			background: #2580a2;
 			color:#FFFFFF;
 			text-decoration:none;
 			border-bottom: 1px solid Black;
 			}
+
 	.menu li ul{
 		background:#4D4D4D;
 		display:none;
@@ -152,10 +195,11 @@ tr{
 		/*top:1em;
 		/*left:0;*/
 		}
+
 	.menu li:hover ul{
 		display:block;
-		
 		}
+
 	.menu li li {
 		display:block;
 		float:none;
@@ -163,10 +207,11 @@ tr{
 		padding:0px;
 		width:140px;
 		}
+
 	.menu li:hover li a{
 		background:none;
-		
 		}
+
 	.menu li ul a{
 		display:block;
 		height:30px;
@@ -175,12 +220,14 @@ tr{
 		margin:0px;
 		text-align:left;
 		}
+
 		.menu li ul a:hover, .menu li ul li:hover a{
 			background:#2580a2;
 			border:0px;
 			color:#ffffff;
 			text-decoration:none;
 			}
+
 	.menu p{
 		clear:right;
 		}	

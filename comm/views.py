@@ -90,9 +90,7 @@ class CreateComm(CreateView):
         return CreateCommForm
 
     def form_valid(self, form):
-        subject = u'Sprzedający rozpoczął nową transakcję do oceny'
-        dupa = subject
-        send_mail(subject, dupa, 'from@example.com', [form.instance.user_b.email], fail_silently=False)
+        send_mail('Sprzedający rozpoczął nową transakcję do oceny', 'Sprzedający rozpoczął transakcje w której masz brać udział - po otrzymaniu przedmiotu zaloguj sie i ocen transakcję', 'from@example.com', [form.instance.user_b.email], fail_silently=False)
         self.object = form.save()
         self.object.user_a = self.request.user
         return super(CreateComm, self).form_valid(form)
@@ -116,7 +114,7 @@ class BUpdateComm(UpdateView):
         return super(BUpdateComm, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        send_mail('Kupujacy wystawil ocene', 'Here is the message.', 'from@example.com', [form.instance.user_a.email], fail_silently=False)
+        send_mail('Kupujacy wystawil ocene', 'Kupujący otrzymał już przedmiot - wystawił już swoją ocenę i oczekuje na ocenę tej transakcji z Twojej strony.', 'from@example.com', [form.instance.user_a.email], fail_silently=False)
         return super(BUpdateComm, self).form_valid(form)
 
 
@@ -139,7 +137,7 @@ class AUpdateComm(UpdateView):
         return super(AUpdateComm, self).get(request, *args, **kwargs)
 
     def form_valid(self, form):
-        send_mail('Sprzedajacy wystawil ocene', 'Here is the message.', 'from@example.com', [form.instance.user_b.email], fail_silently=False)
+        send_mail('Sprzedajacy wystawil ocene', 'Sprzedajacy wystawił już swoją ocenę - transakcja zakończona.', 'from@example.com', [form.instance.user_b.email], fail_silently=False)
         return super(AUpdateComm, self).form_valid(form)
 
 
