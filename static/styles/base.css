@@ -126,13 +126,12 @@ tr{
 
 .ranking_01{
 	width:700px;
-	text-align: center;
+	text-align: left;
 	margin: 20px;
-	padding: 0px;
+	padding: 20px;
 	display: block;
-	background:#5D5D5D;
 	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
-	font-size: 10pt;
+	font-size: 13pt;
 }
 
 .menu{

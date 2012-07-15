@@ -35,21 +35,25 @@
 	<input type="submit" name="Pokaż" value="Pokaż">
 	</form>
 </div>
-<!-- 
+
 <div class="ranking_01">
  	Przedmiot: {{ comm.description }},<br> 
-  	pozytywnych jako sprzedawca: {{ u.a_positive_points }},<br> 
-	negatywnych jako sprzedawca: {{ u.a_negative_points }}, <br>
-	pozytywnych jako kupujacy: {{ u.b_positive_points }}, <br>
-	negatywnych jako kupujacy: {{ u.b_negative_points }},<br>
+  	<div style="color: green"> pozytywnych jako sprzedawca: {{ u.a_positive_points }}</div> 
+	<div style="color: red"> negatywnych jako sprzedawca: {{ u.a_negative_points }}</div>
+	<div style="color: green"> pozytywnych jako kupujacy: {{ u.b_positive_points }}</div>
+	<div style="color: red"> negatywnych jako kupujacy: {{ u.b_negative_points }}</div>
+	<div style="color: yellow"> ilosc transakcji jako sprzedajacy: {{ u.a_count }}</div>
+	<div style="color: yellow"> ilosc transakcji jako kupujacy: {{ u.b_count }}</div>
+
+</div>
+ <!-- 
+
 	suma jako sprzedawca: {{ u.a_points }}, <br>
 	suma jako kupujacy: {{ u.b_points }},  <br>
  	suma: {{ u.points }},<br>
-	ilosc transakcji jako sprzedajacy: {{ u.a_count }}<br>
-	ilosc transakcji jako kupujacy: {{ u.b_count }}<br>
-	ilosc transakcji: {{ u.count }}<br>
+
+ 		ilosc transakcji: {{ u.count }}<br>
 	skalowana ocena: {{ u.rating }} <br>
-</div>
-  -->
+   -->
 </div>
 {% endblock %}
