@@ -38,12 +38,12 @@
 
 <div class="ranking_01">
  	Przedmiot: {{ comm.description }},<br> 
-  	<div style="color: green"> pozytywnych jako sprzedawca: {{ u.a_positive_points }}</div> 
-	<div style="color: red"> negatywnych jako sprzedawca: {{ u.a_negative_points }}</div>
-	<div style="color: green"> pozytywnych jako kupujacy: {{ u.b_positive_points }}</div>
-	<div style="color: red"> negatywnych jako kupujacy: {{ u.b_negative_points }}</div>
-	<div style="color: yellow"> ilosc transakcji jako sprzedajacy: {{ u.a_count }}</div>
-	<div style="color: yellow"> ilosc transakcji jako kupujacy: {{ u.b_count }}</div>
+  	<div style="color: green; float: left"> pozytywnych jako sprzedawca: {{ u.a_positive_points }}</div> 
+	<div style="color: red; float: right"> negatywnych jako sprzedawca: {{ u.a_negative_points }}</div>
+	<div style="color: green; float: left"> pozytywnych jako kupujacy: {{ u.b_positive_points }}</div>
+	<div style="color: red; float: right"> negatywnych jako kupujacy: {{ u.b_negative_points }}</div>
+	<div style="color: yellow; float: left"> ilosc transakcji jako sprzedajacy: {{ u.a_count }}</div>
+	<div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ u.b_count }}</div>
 
 </div>
  <!-- 
