@@ -8,6 +8,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+from django.template import RequestContext
 
 
 class MyUser(User):
@@ -51,24 +52,46 @@ class MyUser(User):
         proxy = True
 
 
+from django import forms
+
+
+class UserForm(forms.Form):
+    users = list(MyUser.objects.all())
+    users = sorted(users, key=MyUser.rating)
+
+    user = forms.ChoiceField(
+            choices=[(u.id, u.username) for u in users],
+            label=u"Wybierz użytkownika dla którego chcesz wyświetlić ranking")
+
+
 @login_required
 def home(request):
-    user = request.user
+    user = MyUser.objects.get(id=request.user.id)
 
     a_todo = user.comm_user_a.filter(point_a__isnull=True, point_b__isnull=False)
     b_todo = user.comm_user_b.filter(point_b__isnull=True)
 
     users = list(MyUser.objects.all())
-    users = sorted(users, key=MyUser. rating)
+    users = sorted(users, key=MyUser.rating)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            selected_user_id = form.cleaned_data.get('user')
+            selected_user = MyUser.objects.get(id=selected_user_id)
+    else:
+        selected_user = user
+        form = UserForm(initial={'user': (selected_user.id, selected_user.username)})
 
     return render_to_response(
         'comm/index.html',
         {
+            'form': form,
             'user': user,
-            "users": users,
+            "selected_user": selected_user,
             'a_todo': a_todo,
             'b_todo': b_todo,
-        })
+        }, RequestContext(request))
 
 
 class CreateComm(CreateView):

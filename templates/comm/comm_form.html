@@ -1,5 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="ranking">Nowa transakcja:</div>
 <form method="post">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit">
-</form>
+</form>{% endblock %}

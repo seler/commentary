@@ -1,59 +1,32 @@
 {% extends "base.html" %}
 {% block title %}Strona główna - {% endblock %}
 {% block content %}
-
-<div id="CONTENT">
-<div class="h1">System komentarzy sprzedaży pdmrc.pl</div>
-<div class="t1">Witaj - jesteś zalogowany jako <span style="color: red; font-size: 15pt;"> {{ user }}</span></div>
-<div class="menu">
-	<ul>
-		<li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
-		<li><a href="http://pdmrc.pl/index.php?act=idx" target="blank">Forum</a></li>
-		<li><a href="{% url auth_logout %}">Wyloguj</a></li>
-	</ul>
-</div >
-<div class="ranking">Twoje otwarte transakcje:</div>
-<div class="t2">
-{% if a_todo or b_todo %}
-{% for comm in a_todo %}
-<div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_b}}</span> za kupiony przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></div>
-{% endfor %}
-{% for comm in b_todo %}
-<div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_a}}</span> za sprzedawany przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong><br></a></div>
-{% endfor %}
-	{% else %}
- 	<div>Nie masz zadnych otwartych transakcji</div>
-{% endif %}
-</div>
 <div class="ranking">Ranking</div>
 <div class="t1">
-	<form action="#" method="post"> 
-	<label>Wybierz użytkownika dla którego chcesz wyświetlić ranking - </label> 
-	<select name="u.username" id="u.username"> 
-	{% for u in users %}<option>{{  u.username  }}</option>{% endfor %}
-	</select>
+	<form action="." method="post">
+	{% csrf_token %}
+	{{ form }}
 	<input type="submit" name="Pokaż" value="Pokaż">
 	</form>
 </div>
 
 <div class="ranking_01">
- 	Przedmiot: {{ comm.description }},<br> 
-  	<div style="color: green; float: left"> pozytywnych jako sprzedawca: {{ u.a_positive_points }}</div> 
-	<div style="color: red; float: right"> negatywnych jako sprzedawca: {{ u.a_negative_points }}</div>
-	<div style="color: green; float: left"> pozytywnych jako kupujacy: {{ u.b_positive_points }}</div>
-	<div style="color: red; float: right"> negatywnych jako kupujacy: {{ u.b_negative_points }}</div>
-	<div style="color: yellow; float: left"> ilosc transakcji jako sprzedajacy: {{ u.a_count }}</div>
-	<div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ u.b_count }}</div>
+	Użytkownik: {{ selected_user }}<br />
+  	<div style="color: green; float: left"> pozytywnych jako sprzedawca: {{ selected_user.a_positive_points }}</div> 
+	<div style="color: red; float: right"> negatywnych jako sprzedawca: {{ selected_user.a_negative_points }}</div>
+	<div style="color: green; float: left"> pozytywnych jako kupujacy: {{ selected_user.b_positive_points }}</div>
+	<div style="color: red; float: right"> negatywnych jako kupujacy: {{ selected_user.b_negative_points }}</div>
+	<div style="color: yellow; float: left"> ilosc transakcji jako sprzedajacy: {{ selected_user.a_count }}</div>
+	<div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ selected_user.b_count }}</div>
 
 </div>
  <!-- 
 
-	suma jako sprzedawca: {{ u.a_points }}, <br>
-	suma jako kupujacy: {{ u.b_points }},  <br>
- 	suma: {{ u.points }},<br>
+	suma jako sprzedawca: {{ selected_user.a_points }}, <br>
+	suma jako kupujacy: {{ selected_user.b_points }},  <br>
+ 	suma: {{ selected_user.points }},<br>
 
- 		ilosc transakcji: {{ u.count }}<br>
-	skalowana ocena: {{ u.rating }} <br>
+ 		ilosc transakcji: {{ selected_user.count }}<br>
+	skalowana ocena: {{ selected_user.rating }} <br>
    -->
-</div>
 {% endblock %}
