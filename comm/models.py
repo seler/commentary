@@ -1,9 +1,50 @@
 # -*- coding: utf-8 -*-
 import random
-import hashlib
 
 from django.db import models
-from django.conf import settings
+from django.contrib.auth.models import User
+
+
+class MyUser(User):
+
+    def a_positive_points(self):
+        return self.comm_user_a.filter(point_b=True).count()
+
+    def a_negative_points(self):
+        return self.comm_user_a.filter(point_b=False).count()
+
+    def b_positive_points(self):
+        return self.comm_user_b.filter(point_a=True).count()
+
+    def b_negative_points(self):
+        return self.comm_user_b.filter(point_a=False).count()
+
+    def a_points(self):
+        return self.a_positive_points() - self.a_negative_points()
+
+    def b_points(self):
+        return self.b_positive_points() - self.b_negative_points()
+
+    def points(self):
+        return self.a_points() + self.b_points()
+
+    def a_count(self):
+        return self.comm_user_a.count()
+
+    def b_count(self):
+        return self.comm_user_b.count()
+
+    def count(self):
+        return self.a_count() + self.b_count()
+
+    def rating(self):
+        if self.count():
+            return self.points() / float(self.count()) * 100
+        return 0
+
+    class Meta:
+        proxy = True
+        ordering = ('username',)
 
 
 def make_random_string(length=8, universe='', small_letters=True, big_letters=True,
@@ -61,12 +102,12 @@ class Comm(models.Model):
         (True, "+1"),
         (False, "-1"),
     )
-    user_a = models.ForeignKey('auth.User',
+    user_a = models.ForeignKey(MyUser,
         related_name="comm_user_a",
         verbose_name=u"sprzedający",
         null=True,
         blank=True)
-    user_b = models.ForeignKey('auth.User',
+    user_b = models.ForeignKey(MyUser,
         related_name="comm_user_b",
         null=True,
         verbose_name=u"kupujący")
