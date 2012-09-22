@@ -57,7 +57,7 @@ from django import forms
 
 class UserForm(forms.Form):
     users = list(MyUser.objects.all())
-    users = sorted(users, key=MyUser.rating)
+    users = sorted(users, key=MyUser.username)
 
     user = forms.ChoiceField(
             choices=[(u.id, u.username) for u in users],
