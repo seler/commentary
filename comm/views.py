@@ -35,7 +35,7 @@ class MyUser(User):
         return self.a_points() + self.b_points()
 
     def a_count(self):
-        return self.comm_user_b.count()
+        return self.comm_user_a.count()
 
     def b_count(self):
         return self.comm_user_b.count()
@@ -69,7 +69,9 @@ def home(request):
     user = MyUser.objects.get(id=request.user.id)
 
     a_todo = user.comm_user_a.filter(point_a__isnull=True, point_b__isnull=False)
+    a_waiting = user.comm_user_a.filter(point_a__isnull=True, point_b__isnull=True)
     b_todo = user.comm_user_b.filter(point_b__isnull=True)
+    b_waiting = user.comm_user_b.filter(point_b__isnull=False, point_a__isnull=True)
 
     users = list(MyUser.objects.all())
     users = sorted(users, key=MyUser.rating)
@@ -83,6 +85,9 @@ def home(request):
         selected_user = user
         form = UserForm(initial={'user': (selected_user.id, selected_user.username)})
 
+    a_trans = selected_user.comm_user_a.all()
+    b_trans = selected_user.comm_user_b.all()
+
     return render_to_response(
         'comm/index.html',
         {
@@ -90,7 +95,11 @@ def home(request):
             'user': user,
             "selected_user": selected_user,
             'a_todo': a_todo,
+            'a_waiting': a_waiting,
+            'a_closed': a_trans,
             'b_todo': b_todo,
+            'b_waiting': b_waiting,
+            'b_closed': b_trans,
         }, RequestContext(request))
 
 
@@ -165,5 +174,3 @@ class AUpdateComm(UpdateView):
 
 
 aupdate_comm = login_required(AUpdateComm.as_view())
-
-

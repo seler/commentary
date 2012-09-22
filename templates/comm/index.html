@@ -1,32 +1,83 @@
 {% extends "base.html" %}
 {% block title %}Strona główna - {% endblock %}
 {% block content %}
+<div class="ranking">Twoje otwarte transakcje:</div>
+<div class="t2">
+    {% if a_todo or b_todo or a_waiting or b_waiting %}
+    {% for comm in a_todo %}
+    <div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_b}}</span> za sprzedany przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></div>
+    {% endfor %}
+    {% for comm in a_waiting %}
+    <div>Oczkujesz na opinię od <span style="color: red; font-size: 15pt;">{{comm.user_b}}</span> za sprzedawany przedmiot <strong>{{comm.description}}</strong></div>
+    {% endfor %}
+    {% for comm in b_todo %}
+    <div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_a}}</span> za kupiony przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong><br></a></div>
+    {% endfor %}
+    {% for comm in b_waiting %}
+    <div>Oczkujesz na opinię od <span style="color: red; font-size: 15pt;">{{comm.user_a}}</span> za kupiony przedmiot <strong>{{comm.description}}</strong></div>
+    {% endfor %}
+
+    {% else %}
+    <div>Nie masz zadnych otwartych transakcji</div>
+    {% endif %}
+</div>
+
 <div class="ranking">Ranking</div>
 <div class="t1">
-	<form action="." method="post">
-	{% csrf_token %}
-	{{ form }}
-	<input type="submit" name="Pokaż" value="Pokaż">
-	</form>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" name="Pokaż" value="Pokaż">
+    </form>
 </div>
 
 <div class="ranking_01">
-	Użytkownik: {{ selected_user }}<br />
-  	<div style="color: green; float: left"> pozytywnych jako sprzedawca: {{ selected_user.a_positive_points }}</div> 
-	<div style="color: red; float: right"> negatywnych jako sprzedawca: {{ selected_user.a_negative_points }}</div>
-	<div style="color: green; float: left"> pozytywnych jako kupujacy: {{ selected_user.b_positive_points }}</div>
-	<div style="color: red; float: right"> negatywnych jako kupujacy: {{ selected_user.b_negative_points }}</div>
-	<div style="color: yellow; float: left"> ilosc transakcji jako sprzedajacy: {{ selected_user.a_count }}</div>
-	<div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ selected_user.b_count }}</div>
+    Użytkownik: {{ selected_user }}<br />
+    <div style="color: green; float: left"> pozytywnych jako sprzedawca: {{ selected_user.a_positive_points }}</div> 
+    <div style="color: red; float: right"> negatywnych jako sprzedawca: {{ selected_user.a_negative_points }}</div>
+    <div style="clear:both"></div>
+    <div style="color: green; float: left"> pozytywnych jako kupujacy: {{ selected_user.b_positive_points }}</div>
+    <div style="color: red; float: right"> negatywnych jako kupujacy: {{ selected_user.b_negative_points }}</div>
+    <div style="clear:both"></div>
+    <div style="color: yellow; float: left"> ilosc <abbr title="tylko zakończonych">transakcji</abbr> jako sprzedajacy: {{ selected_user.a_count }}</div>
+            <div style="color: yellow; float: right"> ilosc <abbr title="tylko zakończonych">transakcji</abbr> jako kupujacy: {{ selected_user.b_count }}</div>
 
 </div>
- <!-- 
+<div class="ranking">Zakończone transakcje:</div>
+<div class="t2">
+    {% if a_closed or b_closed %}
+    <h3>Jako sprzedający:</h3>
+    <ul>
+    {% for comm in a_closed %}
+        <li>
+            przedmiot: {{comm.description}},
+            sprzedający: {{comm.user_a}},
+            ocena sprzedającego: {{ comm.get_point_a_display }},
+            opinia sprzedającego: {{ comm.description_a }},
+            kupujący: {{comm.user_a}},
+            ocena kupującego: {{ comm.get_point_a_display }},
+            opinia kupującego: {{ comm.description_a }},
+        </li>
+    {% endfor %}
+    </ul>
+    <h3>Jako kupujący:</h3>
+    <ul>
+    {% for comm in b_closed %}
+        <li>
+            przedmiot: {{comm.description}},
+            sprzedający: {{comm.user_a}},
+            ocena sprzedającego: {{ comm.get_point_a_display }},
+            opinia sprzedającego: {{ comm.description_a }},
+            kupujący: {{comm.user_a}},
+            ocena kupującego: {{ comm.get_point_a_display }},
+            opinia kupującego: {{ comm.description_a }},
+        </li>
+    {% endfor %}
+    </ul>
 
-	suma jako sprzedawca: {{ selected_user.a_points }}, <br>
-	suma jako kupujacy: {{ selected_user.b_points }},  <br>
- 	suma: {{ selected_user.points }},<br>
+    {% else %}
+    <div>Nie masz zadnych otwartych transakcji</div>
+    {% endif %}
+</div>
 
- 		ilosc transakcji: {{ selected_user.count }}<br>
-	skalowana ocena: {{ selected_user.rating }} <br>
-   -->
 {% endblock %}

@@ -1,38 +1,26 @@
 {% load static %}<!DOCTYPE html>
 <html>
-	<head>
-            <title>{% block title %}{% endblock %}Komentarze</title>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <link rel="stylesheet" href="{% static "styles/base.css" %}" type="text/css" />
-	</head>
-	<body>
-
-<div id="CONTENT">
-<div class="h1">System komentarzy sprzedaży pdmrc.pl</div>
-<div class="t1">Witaj - jesteś zalogowany jako <span style="color: red; font-size: 15pt;"> {{ user }}</span></div>
-<div class="menu">
-	<ul>
-		<li><a href="{% url home %}">Ranking</a></li>
-		<li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
-		<li><a href="http://pdmrc.pl/index.php?act=idx" target="blank">Forum</a></li>
-		<li><a href="{% url auth_logout %}">Wyloguj</a></li>
-		{% if user.is_staff %}<li><a href="{% url admin:index %}">Administracja</a></li>{% endif %}
-	</ul>
-</div >
-<div class="ranking">Twoje otwarte transakcje:</div>
-<div class="t2">
-{% if a_todo or b_todo %}
-{% for comm in a_todo %}
-<div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_b}}</span> za kupiony przedmiot <a href="{% url aupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong></a></div>
-{% endfor %}
-{% for comm in b_todo %}
-<div>Wystaw opinię dla <span style="color: red; font-size: 15pt;">{{comm.user_a}}</span> za sprzedawany przedmiot <a href="{% url bupdate_comm comm.pk %}"> <strong>{{comm.description}}</strong><br></a></div>
-{% endfor %}
-	{% else %}
- 	<div>Nie masz zadnych otwartych transakcji</div>
-{% endif %}
-</div>
-{% block content %}{% endblock %}
-</div>
-	</body>
+    <head>
+        <title>{% block title %}{% endblock %}Komentarze</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="{% static "styles/base.css" %}" type="text/css" />
+    </head>
+    <body>
+        <div id="CONTENT">
+            <div class="h1">System komentarzy sprzedaży pdmrc.pl</div>
+            {% if user.pk %}
+            <div class="t1">Witaj - jesteś zalogowany jako <span style="color: red; font-size: 15pt;"> {{ user }}</span></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url home %}">Ranking</a></li>
+                    <li><a href="{% url create_comm %}">Rozpocznij nową transakcję</a></li>
+                    <li><a href="http://pdmrc.pl/index.php?act=idx" target="blank">Forum</a></li>
+                    <li><a href="{% url auth_logout %}">Wyloguj</a></li>
+                    {% if user.is_staff %}<li><a href="{% url admin:index %}">Administracja</a></li>{% endif %}
+                </ul>
+            </div >
+            {% endif %}
+            {% block content %}{% endblock %}
+        </div>
+   </body>
 </html>
