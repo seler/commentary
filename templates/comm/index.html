@@ -52,9 +52,9 @@
             sprzedający: {{comm.user_a|default:"brak"}},
             ocena sprzedającego: {{ comm.get_point_a_display|default:"brak" }},
             opinia sprzedającego: {{ comm.description_a|default:"brak" }},
-            kupujący: {{comm.user_a|default:"brak"}},
-            ocena kupującego: {{ comm.get_point_a_display|default:"brak" }},
-            opinia kupującego: {{ comm.description_a|default:"brak" }},
+            kupujący: {{comm.user_b|default:"brak"}},
+            ocena kupującego: {{ comm.get_point_b_display|default:"brak" }},
+            opinia kupującego: {{ comm.description_b|default:"brak" }},
         </li>
     {% endfor %}
 </ul>
@@ -68,9 +68,9 @@
             sprzedający: {{comm.user_a|default:"brak"}},
             ocena sprzedającego: {{ comm.get_point_a_display|default:"brak" }},
             opinia sprzedającego: {{ comm.description_a|default:"brak" }},
-            kupujący: {{comm.user_a|default:"brak"}},
-            ocena kupującego: {{ comm.get_point_a_display|default:"brak" }},
-            opinia kupującego: {{ comm.description_a|default:"brak" }},
+            kupujący: {{comm.user_b|default:"brak"}},
+            ocena kupującego: {{ comm.get_point_b_display|default:"brak" }},
+            opinia kupującego: {{ comm.description_b|default:"brak" }},
         </li>
     {% endfor %}
     </ul>
