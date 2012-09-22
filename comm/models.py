@@ -102,12 +102,12 @@ class Comm(models.Model):
         (True, "+1"),
         (False, "-1"),
     )
-    user_a = models.ForeignKey(MyUser,
+    user_a = models.ForeignKey(User,
         related_name="comm_user_a",
         verbose_name=u"sprzedający",
         null=True,
         blank=True)
-    user_b = models.ForeignKey(MyUser,
+    user_b = models.ForeignKey(User,
         related_name="comm_user_b",
         null=True,
         verbose_name=u"kupujący")
