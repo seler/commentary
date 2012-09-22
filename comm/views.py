@@ -50,14 +50,14 @@ class MyUser(User):
 
     class Meta:
         proxy = True
+        ordering = ('username')
 
 
 from django import forms
 
 
 class UserForm(forms.Form):
-    users = list(MyUser.objects.all())
-    users = sorted(users, key=MyUser.username)
+    users = list(MyUser.objects.all().order_by('username'))
 
     user = forms.ChoiceField(
             choices=[(u.id, u.username) for u in users],
@@ -83,7 +83,7 @@ def home(request):
             selected_user = MyUser.objects.get(id=selected_user_id)
     else:
         selected_user = user
-        form = UserForm(initial={'user': (selected_user.id, selected_user.username)})
+        form = UserForm(initial={'user': selected_user.id})
 
     a_trans = selected_user.comm_user_a.all()
     b_trans = selected_user.comm_user_b.all()

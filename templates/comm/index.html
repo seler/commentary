@@ -40,37 +40,37 @@
     <div style="color: red; float: right"> negatywnych jako kupujacy: {{ selected_user.b_negative_points }}</div>
     <div style="clear:both"></div>
     <div style="color: yellow; float: left"> ilosc transakcji jako sprzedajacy: {{ selected_user.a_count }}</div>
-            <div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ selected_user.b_count }}</div>
+    <div style="color: yellow; float: right"> ilosc transakcji jako kupujacy: {{ selected_user.b_count }}</div>
+    <div style="clear:both"></div>
 
-</div>
-<div class="ranking">Zakończone transakcje:</div>
-<div class="t2">
-    {% if a_closed or b_closed %}
-    <h3>Jako sprzedający:</h3>
+    {% if a_closed %}
+    <h3>Komentarze jako sprzedający:</h3>
     <ul>
     {% for comm in a_closed %}
         <li>
-            przedmiot: {{comm.description}},
-            sprzedający: {{comm.user_a}},
-            ocena sprzedającego: {{ comm.get_point_a_display }},
-            opinia sprzedającego: {{ comm.description_a }},
-            kupujący: {{comm.user_a}},
-            ocena kupującego: {{ comm.get_point_a_display }},
-            opinia kupującego: {{ comm.description_a }},
+            przedmiot: {{comm.description|default:"brak"}},
+            sprzedający: {{comm.user_a|default:"brak"}},
+            ocena sprzedającego: {{ comm.get_point_a_display|default:"brak" }},
+            opinia sprzedającego: {{ comm.description_a|default:"brak" }},
+            kupujący: {{comm.user_a|default:"brak"}},
+            ocena kupującego: {{ comm.get_point_a_display|default:"brak" }},
+            opinia kupującego: {{ comm.description_a|default:"brak" }},
         </li>
     {% endfor %}
-    </ul>
-    <h3>Jako kupujący:</h3>
+</ul>
+{% endif %}
+{% if b_closed %}
+    <h3>Komentarze jako kupujący:</h3>
     <ul>
     {% for comm in b_closed %}
         <li>
-            przedmiot: {{comm.description}},
-            sprzedający: {{comm.user_a}},
-            ocena sprzedającego: {{ comm.get_point_a_display }},
-            opinia sprzedającego: {{ comm.description_a }},
-            kupujący: {{comm.user_a}},
-            ocena kupującego: {{ comm.get_point_a_display }},
-            opinia kupującego: {{ comm.description_a }},
+            przedmiot: {{comm.description|default:"brak"}},
+            sprzedający: {{comm.user_a|default:"brak"}},
+            ocena sprzedającego: {{ comm.get_point_a_display|default:"brak" }},
+            opinia sprzedającego: {{ comm.description_a|default:"brak" }},
+            kupujący: {{comm.user_a|default:"brak"}},
+            ocena kupującego: {{ comm.get_point_a_display|default:"brak" }},
+            opinia kupującego: {{ comm.description_a|default:"brak" }},
         </li>
     {% endfor %}
     </ul>
